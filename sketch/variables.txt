@@ -1,0 +1,56 @@
+class Subject:
+	Subjects : arr<Subjects>
+
+class Flashcard:
+	id : str
+	Level_id: str
+	Subject_id : str
+	Question : str
+	Answer : str	
+	
+
+class Subject:
+	id : str
+	Levels : arr<Level>
+	Name : str
+	CreationType : str ["default"/"custom"]
+
+class Level:
+	id : str
+	Subject_id : str
+	CurrentScore : int 
+	Timer : int
+	FlashcardSet: set<Flashcard> {F0, F1, F2}
+
+class Statistics:
+	GamesPlayed : int
+	FavoriteSubject: str
+	MostMistakesSubject : str
+	MostCorrectSubject : str
+-------------------------------------------------------------------------------------------------------------
+Flashcard:
+	(PK)id
+	(FK)Level_id
+	Question
+	Answer
+
+Subject:
+	(PK)id
+	Name
+	CreationType
+
+Level:
+	(PK)id
+	(FK)Subject_id
+	Highscore
+	Timer
+	
+Statistics:
+	GamesPlayed
+	FavoriteSubject
+	MostMistakesSubject
+	MostCorrectSubject
+
+Note:
+	One Subject can have many Levels, while a Level can only have one Subject (1:M)
+	One Level can have many Flashcards, but a Flashcard can only have one Level (1:M)
